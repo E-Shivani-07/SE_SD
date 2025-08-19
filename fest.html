@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campus Fest 2025</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --bg: #f7f9fc;            /* Light, airy background */
+        --card: #ffffff;          /* Card surfaces */
+        --ink: #1f2937;           /* Neutral text */
+        --muted: #6b7280;         /* Muted text */
+        --primary: #7c8cff;       /* Soft periwinkle */
+        --primary-ink: #25314d;   /* Darker header text */
+        --accent: #a7f0ba;        /* Mint accent */
+        --ring: rgba(124, 140, 255, 0.4);
+        --radius: 16px;
+        --shadow: 0 10px 25px rgba(31, 41, 55, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        background: radial-gradient(1200px 800px at 10% 0%, #eef2ff 0%, transparent 40%),
+                    radial-gradient(1200px 800px at 90% 0%, #ecfdf5 0%, transparent 40%),
+                    var(--bg);
+        line-height: 1.6;
+      }
+
+      /* Layout */
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(140%) blur(6px);
+        background: rgba(247, 249, 252, 0.8);
+        border-bottom: 1px solid rgba(31, 41, 55, 0.06);
+        z-index: 50;
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+      nav a {
+        text-decoration: none;
+        color: var(--muted);
+        padding: 10px 14px;
+        border-radius: 999px;
+        transition: all .2s ease;
+      }
+      nav a:hover { color: var(--ink); background: #eef2ff; }
+
+      .brand {
+        display: flex; align-items: center; gap: 10px;
+        padding: 14px 0;
+      }
+      .logo {
+        width: 40px; height: 40px; border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), #b8c3ff);
+        box-shadow: var(--shadow);
+      }
+      .brand h1 { font-size: 1.25rem; margin: 0; color: var(--primary-ink); }
+
+      /* Hero */
+      .hero { padding: 64px 0 24px; }
+      .hero .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 28px 28px 6px;
+        position: relative;
+        overflow: hidden;
+      }
+      .badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 0.85rem; color: var(--primary-ink);
+        background: #eef2ff; padding: 8px 12px; border-radius: 999px;
+      }
+      .hero h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); margin: 12px 0 10px; }
+      .hero p { margin: 0 0 18px; color: var(--muted); }
+
+      .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+      .btn {
+        appearance: none; border: none; cursor: pointer;
+        padding: 12px 16px; border-radius: 12px; font-weight: 600;
+        background: var(--primary); color: white; box-shadow: var(--shadow);
+        transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+      }
+      .btn:hover { filter: brightness(1.05); box-shadow: 0 12px 28px rgba(124, 140, 255, 0.45); }
+      .btn:active { transform: translateY(1px); }
+      .btn.secondary { background: #ecfdf5; color: #065f46; }
+
+      /* Sections */
+      section { padding: 32px 0; }
+      section h3 { margin: 0 0 14px; font-size: 1.25rem; color: var(--primary-ink); }
+      .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+      /* Schedule table */
+      .table-wrap {
+        overflow-x: auto;
+        border-radius: var(--radius);
+        border: 1px solid rgba(31, 41, 55, 0.06);
+      }
+      table { width: 100%; border-collapse: collapse; min-width: 680px; }
+      thead th {
+        text-align: left; font-weight: 600; font-size: 0.95rem;
+        background: linear-gradient(0deg, #ffffff, #f3f6ff);
+        color: var(--primary-ink);
+      }
+      th, td { padding: 14px 16px; border-bottom: 1px solid #f0f3f9; }
+      tbody tr:hover { background: #fafbff; }
+      .tag { display: inline-block; padding: 4px 10px; font-size: 0.8rem; border-radius: 999px; background: #eef2ff; color: #3730a3; }
+
+      /* Gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      figure {
+        background: var(--card);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        margin: 0;
+      }
+      figure img { width: 100%; height: 220px; object-fit: cover; display: block; }
+      figcaption { padding: 10px 12px 14px; font-size: 0.95rem; color: var(--muted); }
+
+      /* Footer */
+      footer { padding: 28px 0 48px; color: var(--muted); }
+      .links { display: flex; gap: 14px; flex-wrap: wrap; }
+      .chip { padding: 8px 12px; background: #f0f3ff; border-radius: 999px; border: 1px solid rgba(31,41,55,0.06); }
+
+      /* Focus ring */
+      a:focus, button:focus { outline: 3px solid var(--ring); outline-offset: 2px; }
+
+      @media (max-width: 640px) {
+        .hero { padding-top: 40px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap row">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <h1>Campus Fest 2025</h1>
+        </div>
+        <nav aria-label="Primary">
+          <a href="#schedule">Schedule</a>
+          <a href="#gallery">Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- HERO / INTRO -->
+      <section class="hero">
+        <div class="card">
+          <span class="badge" aria-label="Fest dates">🎉 12–14 Sept 2025 • Central Campus</span>
+          <h2>Celebrate code, culture, and creativity.</h2>
+          <p>
+            Three days of hackathons, workshops, and performances. Open to all departments. 
+            Register early to secure your spot!
+          </p>
+          <div class="cta" role="group" aria-label="Hero actions">
+            <a class="btn" href="#schedule">View Schedule</a>
+            <a class="btn secondary" href="#gallery">See Past Highlights</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section id="schedule" aria-labelledby="schedule-title">
+        <h3 id="schedule-title">Event Schedule</h3>
+        <div class="table-wrap card" role="region" aria-label="Scrollable schedule table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Event</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Venue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Opening Ceremony</td>
+                <td><span class="tag">General</span></td>
+                <td>12 Sept 2025 (Fri)</td>
+                <td>09:30 – 10:30</td>
+                <td>Auditorium A</td>
+              </tr>
+              <tr>
+                <td>Coding Contest</td>
+                <td><span class="tag">Tech</span></td>
+                <td>12 Sept 2025 (Fri)</td>
+                <td>11:00 – 15:00</td>
+                <td>CS Lab Block</td>
+              </tr>
+              <tr>
+                <td>UI Design Sprint</td>
+                <td><span class="tag">Tech</span></td>
+                <td>12 Sept 2025 (Fri)</td>
+                <td>16:00 – 18:00</td>
+                <td>Design Studio</td>
+              </tr>
+              <tr>
+                <td>Startup Pitch</td>
+                <td><span class="tag">Biz</span></td>
+                <td>13 Sept 2025 (Sat)</td>
+                <td>10:00 – 12:30</td>
+                <td>Seminar Hall 2</td>
+              </tr>
+              <tr>
+                <td>Robotics Expo</td>
+                <td><span class="tag">Tech</span></td>
+                <td>13 Sept 2025 (Sat)</td>
+                <td>13:30 – 16:00</td>
+                <td>Expo Ground</td>
+              </tr>
+              <tr>
+                <td>Workshop: AI for Everyone</td>
+                <td><span class="tag">Workshop</span></td>
+                <td>13 Sept 2025 (Sat)</td>
+                <td>16:30 – 18:00</td>
+                <td>Innovation Lab</td>
+              </tr>
+              <tr>
+                <td>Cultural Night</td>
+                <td><span class="tag">Cultural</span></td>
+                <td>13 Sept 2025 (Sat)</td>
+                <td>19:00 – 21:30</td>
+                <td>Open Air Theatre</td>
+              </tr>
+              <tr>
+                <td>Sports Mini-Olympics</td>
+                <td><span class="tag">Sports</span></td>
+                <td>14 Sept 2025 (Sun)</td>
+                <td>09:00 – 12:00</td>
+                <td>Main Ground</td>
+              </tr>
+              <tr>
+                <td>Food Carnival</td>
+                <td><span class="tag">Fun</span></td>
+                <td>14 Sept 2025 (Sun)</td>
+                <td>12:00 – 15:00</td>
+                <td>Cafeteria Lawns</td>
+              </tr>
+              <tr>
+                <td>Valedictory & Awards</td>
+                <td><span class="tag">General</span></td>
+                <td>14 Sept 2025 (Sun)</td>
+                <td>16:30 – 17:30</td>
+                <td>Auditorium A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery" aria-labelledby="gallery-title">
+        <h3 id="gallery-title">Gallery — Previous Fest Highlights</h3>
+        <div class="gallery" role="list">
+          <figure role="listitem">
+            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=60" alt="Crowd enjoying a night concert at campus." loading="lazy" />
+            <figcaption>Live performances lighting up Cultural Night ✨</figcaption>
+          </figure>
+          <figure role="listitem">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=60" alt="Students coding together during a hackathon." loading="lazy" />
+            <figcaption>Intense focus at the Coding Contest 👩‍💻👨‍💻</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- INFO CARDS (optional quick links) -->
+      <section aria-label="Quick info" style="display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="card" style="padding:16px;">
+          <strong>Registration</strong>
+          <p style="margin:8px 0 0; color:var(--muted);">Opens 25 Aug • Closes 8 Sept</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>Passes</strong>
+          <p style="margin:8px 0 0; color:var(--muted);">Free for students • Guests welcome</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>Contact</strong>
+          <p style="margin:8px 0 0; color:var(--muted);">fest@college.edu • +91-98765-43210</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap row" style="align-items:flex-start;">
+        <small>© 2025 Campus Fest Committee</small>
+        <div class="links">
+          <span class="chip">#code</span>
+          <span class="chip">#culture</span>
+          <span class="chip">#community</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
